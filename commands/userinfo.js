@@ -11,7 +11,7 @@ module.exports.execute = async function (member,channel,guild,args,Client,messag
         const user = message.mentions.users.first() ?? message.member.user;
 
         if(user === undefined){
-            message.reply("Veuillez entrer un id");
+            message.reply("Veuillez entrer une id");
             return;
         }
 
