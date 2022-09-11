@@ -4,12 +4,13 @@ const { serveurBooster, abonnes, actif6, adminID } = require("../data/RoleId.jso
 
 const {commands} = require("../index");
 const {getScore, resetScore, updateScore, getRecord, getPseudo, setRecord, setPseudo, updateRecord} = require("../managers/CompterManager");
-const {EmbedBuilder, BaseChannel} = require("discord.js");
+const {EmbedBuilder, BaseChannel, DMChannel} = require("discord.js");
 const {hasAccount, createProfile, addXp, getLastUpdated, getXpRequierd, getLevel, getXp, removeXp, addLevel} = require("../managers/XpManager");
 
 
 module.exports.execute = async function (message,args2,args3,Client){
-    if(message.author.bot || message.channel instanceof BaseChannel) return;
+    if(message.author.bot) return;
+    if(message.channel instanceof DMChannel) return;
 
     /* Xp for message */
 
