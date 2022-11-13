@@ -15,19 +15,14 @@ module.exports.network = {
             name: "message",
             description: "nombre de message",
             type: "INTEGER",
-            required: true
+            required: false
         }
     ]
 }
 
 module.exports.execute = async function (member, channel, guild, args, Client, interaction){
 
-    const amount = args[0];
-    if(!amount || isNaN(args[0])){
-        return interaction.reply("Veuillez un nombre valide");
-    }
-
-    if (args[0] > 100) {
+    if (args[0] > 100 || args[0] === undefined) {
         args[0] = 100;
     }
 

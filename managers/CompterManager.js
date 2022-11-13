@@ -2,12 +2,11 @@ const fs = require('fs');
 const fileName = __dirname+"\\..\\data\\database.json";
 const file = require(__dirname+"\\..\\data\\database.json");
 
-module.exports.updateScore = function updateScore(){
+module.exports.updateScore = function updateScore(userId){
     file.message.score++;
+    file.message.pseudo = userId;
     fs.writeFile(fileName, JSON.stringify(file,null,2), function writeJSON(err) {
         if (err) return console.log(err);
-        console.log(JSON.stringify(file));
-        console.log('writing to ' + fileName);
     });
 }
 
@@ -19,8 +18,6 @@ module.exports.resetScore = function resetScore(){
     file.message.score = 0;
     fs.writeFile(fileName, JSON.stringify(file,null,2), function writeJSON(err) {
         if (err) return console.log(err);
-        console.log(JSON.stringify(file));
-        console.log('writing to ' + fileName);
     });
 }
 
@@ -28,21 +25,13 @@ module.exports.getRecord = function getRecord(){
     return require(fileName).message.record;
 }
 
-module.exports.setPseudo =  function setPseudo(id){
-    file.message.pseudo = id;
-    fs.writeFile(fileName, JSON.stringify(file,null,2), function writeJSON(err) {
-        if (err) return console.log(err);
-        console.log(JSON.stringify(file));
-        console.log('writing to ' + fileName);
-    });
-}
 
 module.exports.updateRecord = function updateRecord(){
-    file.message.record = module.exports.getScore();
+    if(file.message.record < module.exports.getScore()){
+        file.message.record = module.exports.getScore()
+    }
     fs.writeFile(fileName, JSON.stringify(file,null,2), function writeJSON(err) {
         if (err) return console.log(err);
-        console.log(JSON.stringify(file));
-        console.log('writing to ' + fileName);
     });
 }
 

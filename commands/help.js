@@ -1,6 +1,5 @@
 const {EmbedBuilder} = require("discord.js");
 const Main = require("../index");
-const {botName} = require("../config.json");
 
 module.exports.config = {
     name: "help",
@@ -26,7 +25,7 @@ module.exports.execute = async function (member, channel, guild, args, Client, i
         })
     const embed = new EmbedBuilder()
         .setColor("#00ffea")
-        .setTitle(`**Options de ${botName}**`)
+        .setTitle(`**Options de ${member.guild.name}**`)
         .setDescription("Bienvenue sur le menu d'aide de *Achedon12 - Communauté*.")
         .addFields(
            fields

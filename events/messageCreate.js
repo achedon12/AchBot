@@ -1,7 +1,7 @@
 const { compter, commandBot } = require("../data/ChannelsId.json");
 const { serveurBooster, abonnes, actif6, adminID } = require("../data/RoleId.json");
 
-const {getScore, resetScore, updateScore, getRecord, getPseudo, setRecord, setPseudo, updateRecord} = require("../managers/CompterManager");
+const {getScore, resetScore, updateScore, getRecord, getPseudo, updateRecord} = require("../managers/CompterManager");
 const {EmbedBuilder, BaseChannel, DMChannel} = require("discord.js");
 const {hasAccount, createProfile, addXp, getLastUpdated, getXpRequierd, getLevel, getXp, removeXp, addLevel} = require("../managers/XpManager");
 
@@ -37,18 +37,17 @@ module.exports.execute = async function (message,args2,args3,Client){
     }
 
     if(message.channel.id === compter){
-        console.log(message.content);
         if(parseInt(message.content) !== getScore() + 1){
             updateRecord();
             resetScore();
-            setPseudo(userId);
+
             const embed = new EmbedBuilder()
                 .setTitle(`${message.member.user.tag} s'est trompé`)
                 .setDescription(`Le jeu recommence !\n Le record est actuellement ${getRecord()}, detenu par <@${getPseudo()}>\nLe prochain nombre est: **1**`)
                 .setTimestamp()
-            message.channel.send({embeds: [embed]});
+            await message.channel.send({embeds: [embed]});
         }else{
-            updateScore();
+            updateScore(userId);
         }
     }else{
         let helloClient = ["slt","salut","hello","yo","yoo","bonjour","bjr","hi","yosh"]
