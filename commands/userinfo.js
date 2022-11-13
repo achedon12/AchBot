@@ -15,23 +15,22 @@ module.exports.network = {
         {
             name: "id",
             description: "id de la personne",
-            type: "NUMBER",
+            type: "USER",
             required: true
         }
     ]
 }
 
-module.exports.execute = async function (member,channel,guild,args,Client,message,interaction){
+module.exports.execute = async function (member, channel, guild, args, Client, interaction){
 
     const int = args[0];
     if(!int || isNaN(args[0])){
-        return message.reply("Veuillez un nombre valide");
+        return interaction.reply("Veuillez un nombre valide");
     }
 
     const user =  int;
 
     const theMember = guild.members.cache.get(user.id);
-    interaction.reply(`Voici les informations sur ${theMember.username}`);
     const embed = new EmbedBuilder()
         .setColor("#00ffea")
         .setAuthor({name: `Informations sur ${theMember.username}`})
@@ -44,5 +43,5 @@ module.exports.execute = async function (member,channel,guild,args,Client,messag
                 {name: "Création du compte ",value: `*${new Date(user.createdAt).toLocaleDateString()}*`},
                 {name: "Nombre de rôles: ",value: `*${theMember.roles.cache.size - 1}*`}]
         )
-    channel.send({embeds: [embed]});
+    interaction.reply({embeds: [embed]});
 }

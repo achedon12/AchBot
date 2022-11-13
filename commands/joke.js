@@ -21,7 +21,7 @@ module.exports.network = {
     ]
 }
 
-module.exports.execute = async function (member, channel, guild, args, Client, interaction) {
+module.exports.execute = async function (member, channel, guild, args, Client, interaction){
     const blagues = new BlaguesAPI(discordToken);
     let blague;
     if(args[0] === undefined){

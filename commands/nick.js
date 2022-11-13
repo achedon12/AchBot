@@ -19,13 +19,13 @@ module.exports.network = {
     ]
 }
 
-module.exports.execute = async function (member,channel,guild,args,Client,message,interaction){
+module.exports.execute = async function (member, channel, guild, args, Client, interaction){
     if(message.member.nickname !== null){
         await member.setNickname(message.author.username);
-        message.reply("Vous avez bien réinitialisé votre pseudo");
+        interaction.reply("Vous avez bien réinitialisé votre pseudo");
     }else{
         await member.setNickname(args[0]);
-        message.reply("Vous avez bien changé votre nom en "+args[0])
+        interaction.reply("Vous avez bien changé votre nom en "+args[0])
 
     }
 }

@@ -9,6 +9,6 @@ module.exports.network = {
     description: "savoir le ping de quelqu'un",
 }
 
-module.exports.execute = function (member, channel, guild, args, Client, interaction) {
+module.exports.execute = async function (member, channel, guild, args, Client, interaction){
     interaction.reply(`🏓 Votre ping est de ${Math.abs(Date.now() - interaction.createdTimestamp)} ms\n`);
 }

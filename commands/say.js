@@ -20,7 +20,6 @@ module.exports.network = {
     ]
 }
 
-module.exports.execute = async function (member,channel,guild,args,Client,message,interaction){
-    channel.send(args[0]);
-    setTimeout(()=>{message.delete()},500);
+module.exports.execute = async function (member, channel, guild, args, Client, interaction){
+    interaction.reply(args[0]);
 }

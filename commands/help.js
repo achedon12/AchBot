@@ -13,8 +13,7 @@ module.exports.network = {
     description: "afficher les caractéristiques du bot",
 }
 
-module.exports.execute = async function (member,channel,guild,args,Client,message,interaction){
-
+module.exports.execute = async function (member, channel, guild, args, Client, interaction){
     let fields = [];
         Main.commands.forEach(cmd => {
             if(cmd.config.permission === undefined){
@@ -36,6 +35,6 @@ module.exports.execute = async function (member,channel,guild,args,Client,messag
         .setFooter({
             text: "Achedon12 - Communauté"
         });
-    channel.send({embeds: [embed]});
+    interaction.reply({embeds: [embed]});
 }
 

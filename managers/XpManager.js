@@ -86,3 +86,17 @@ module.exports.getXpRequierd = (level) => {
     }
     return result
 }
+
+module.exports.getDatabaseToArray = () =>{
+    let tab = [];
+    const all = require(fileName);
+
+    for(let i in all) {
+        tab.push([i,all[i]]);
+    }
+
+    tab.sort(function (x, y) {
+        return y[1].level - x[1].level && y[1].xp - x[1].xp;
+    });
+    return tab;
+}
