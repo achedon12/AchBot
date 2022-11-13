@@ -24,14 +24,15 @@ const Client = new Discord.Client({
 module.exports.dirname = __dirname;
 
 let Collection = new Discord.Collection();
-fs.readdir("./commands/",function (error,files){
+fs.readdir("./commands/", function (error, files) {
     files.forEach(file => {
-        let command = require("./commands/"+file);
-        Collection.set(command.config.name,command);
+        let command = require("./commands/" + file);
+        Collection.set(command.config.name, command);
     });
 });
 
 module.exports.commands = Collection;
+
 
 fs.readdir("./events/", function (err, files) {
     files.forEach(file => {

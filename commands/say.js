@@ -1,20 +1,26 @@
-const {prefix} = require("../config.json");
 const {moderatorID} = require("../data/RoleId.json");
 
 module.exports.config = {
     name: "say",
     description: "faire un message d'annonce",
-    permission : moderatorID
+    permission : moderatorID,
+    pushable: false,
 }
-module.exports.execute = async function (member,channel,guild,args,Client,message){
-    if(args.length >= 2){
-        let msg = "";
-        for (let i = 0; i < args.length; i++) {
-            msg +=  " " + args[i];
+
+module.exports.network = {
+    name: "say",
+    description: "faire un message d'annonce",
+    options: [
+        {
+            name: "annonce",
+            description: "message d'annonce",
+            type: "STRING",
+            required: true
         }
-        channel.send(msg.substring(prefix.length + 3));
-        setTimeout(()=>{message.delete()},500);
-    }else{
-        message.reply("Veuillez entrer un message valide");
-    }
+    ]
+}
+
+module.exports.execute = async function (member,channel,guild,args,Client,message,interaction){
+    channel.send(args[0]);
+    setTimeout(()=>{message.delete()},500);
 }
