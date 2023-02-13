@@ -1,5 +1,6 @@
 const {CommandInteraction} = require("discord.js");
 const slashsCommandsManager = require("../managers/slashsCommandsManager");
+const buttonFactory = require("../managers/buttonFactory");
 
 module.exports.execute = async function (interaction, any1, any2, Client) {
     /**
@@ -36,5 +37,13 @@ module.exports.execute = async function (interaction, any1, any2, Client) {
             }
         }
         await slashsCommandsManager.executeCommand(interaction.member, interaction.channel, interaction.guild, args, interaction.commandName, Client, interaction)
+    }else{
+        if (interaction.isButton()) {
+            if (buttonFactory.btnExist(interaction.customId)) {
+                await buttonFactory.call(interaction.customId, interaction, Client)
+            } else {
+                interaction.channel.send("le bouton n'est pas valide !")
+            }
+        }
     }
 }

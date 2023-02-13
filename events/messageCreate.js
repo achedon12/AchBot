@@ -51,10 +51,9 @@ module.exports.execute = async function (message,args2,args3,Client){
         }
     }else{
         let helloClient = ["slt","salut","hello","yo","yoo","bonjour","bjr","hi","yosh"]
-        let helloBot = ["salut *"+message.author.username+"* !", "bonjour *"+message.author.username+"* !","hello *"+message.author.username+"* !"];
 
         if(helloClient.includes(message.content)){
-            message.reply(helloBot[Math.floor(Math.random() * helloBot.length)]);
+            message.react("👋");
         }
     }
 }
