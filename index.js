@@ -48,6 +48,7 @@ module.exports.saveData = function(file, data){
 module.exports.dirname = __dirname;
 module.exports.role_id = require("./data/RoleId.json");
 module.exports.channel_id = require("./data/ChannelsId.json");
+module.exports.database = require("./data/database.json");
 module.exports.Client = Client;
 module.exports.commands = Collection;
 

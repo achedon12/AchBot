@@ -56,7 +56,7 @@ class buttonFactory {
                             }
                         },
                         {
-                            "role_id": Main.role_id.member,
+                            "role_id": Main.role_id.followerID,
                             "roles": {
                                 SendMessages: true,
                                 ViewChannel: false,

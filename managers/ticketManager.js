@@ -1,3 +1,5 @@
+
+
 const {Guild, TextChannel} = require("discord.js");
 const embedManager = require("./embedManager");
 const Main = require("../index");
@@ -117,6 +119,10 @@ class ticketManager {
 
     isInTicket(channel) {
         return channel.parentId === Main.channel_id.category_ticket;
+    }
+
+    getTicket(member) {
+        return member.guild.channels.cache.find(c => c.name === `ticket-${member.user.username}` && c.parentId === Main.channel_id.category_ticket);
     }
 }
 
